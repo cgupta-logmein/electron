@@ -1,6 +1,6 @@
 {
   "name": "electron",
-  "version": "1.7.9",
+  "version": "1.7.10",
   "repository": "https://github.com/electron/electron",
   "description": "Build cross platform desktop apps with JavaScript, HTML, and CSS",
   "devDependencies": {
@@ -63,5 +63,8 @@
   "author": "Electron Community",
   "keywords": [
     "electron"
-  ]
+  ],
+  "dependencies": {
+    "dugite": "^1.53.0"
+  }
 }

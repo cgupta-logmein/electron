@@ -141,7 +141,7 @@ void RendererClientBase::RenderFrameCreated(
     content::RenderFrame* render_frame) {
   new AtomRenderFrameObserver(render_frame, this);
   new AutofillAgent(render_frame);
-  new PepperHelper(render_frame);
+//  new PepperHelper(render_frame);
   new ContentSettingsObserver(render_frame);
   new printing::PrintWebViewHelper(render_frame);
 

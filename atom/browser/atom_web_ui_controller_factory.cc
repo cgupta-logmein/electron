@@ -27,9 +27,9 @@ AtomWebUIControllerFactory::~AtomWebUIControllerFactory() {}
 content::WebUI::TypeID AtomWebUIControllerFactory::GetWebUIType(
     content::BrowserContext* browser_context,
     const GURL& url) const {
-  if (url.host() == kPdfViewerUIHost) {
-    return const_cast<AtomWebUIControllerFactory*>(this);
-  }
+      if (url.host() == kPdfViewerUIHost) {
+        return const_cast<AtomWebUIControllerFactory*>(this);
+      }
 
   return content::WebUI::kNoWebUI;
 }
@@ -67,8 +67,10 @@ AtomWebUIControllerFactory::CreateWebUIControllerForURL(content::WebUI* web_ui,
     if (url.has_ref()) {
       src = src + '#' + url.ref();
     }
-    auto browser_context = web_ui->GetWebContents()->GetBrowserContext();
-    return new PdfViewerUI(browser_context, web_ui, src);
+    //auto browser_context = web_ui->GetWebContents()->GetBrowserContext();
+
+    return nullptr;
+    //return new PdfViewerUI(browser_context, web_ui, src);
   }
   return nullptr;
 }

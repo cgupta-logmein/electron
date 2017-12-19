@@ -24,8 +24,8 @@ class AtomContentClient : public brightray::ContentClient {
   std::string GetUserAgent() const override;
   base::string16 GetLocalizedString(int message_id) const override;
   void AddAdditionalSchemes(Schemes* schemes) override;
-  void AddPepperPlugins(
-      std::vector<content::PepperPluginInfo>* plugins) override;
+/*  void AddPepperPlugins(
+      std::vector<content::PepperPluginInfo>* plugins) override;*/
 
  private:
   DISALLOW_COPY_AND_ASSIGN(AtomContentClient);

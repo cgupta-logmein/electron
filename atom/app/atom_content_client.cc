@@ -17,23 +17,23 @@
 #include "base/strings/string_util.h"
 #include "base/strings/utf_string_conversions.h"
 #include "content/public/common/content_constants.h"
-#include "content/public/common/pepper_plugin_info.h"
+//#include "content/public/common/pepper_plugin_info.h"
 #include "content/public/common/user_agent.h"
-#include "pdf/pdf.h"
+/*#include "pdf/pdf.h"
 #include "ppapi/shared_impl/ppapi_permissions.h"
-#include "third_party/widevine/cdm/stub/widevine_cdm_version.h"
+#include "third_party/widevine/cdm/stub/widevine_cdm_version.h"*/
 #include "ui/base/l10n/l10n_util.h"
 #include "url/url_constants.h"
 
-#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
+/*#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
 #include "chrome/common/widevine_cdm_constants.h"
-#endif
+#endif*/
 
 namespace atom {
 
 namespace {
 
-content::PepperPluginInfo CreatePepperFlashInfo(const base::FilePath& path,
+/*content::PepperPluginInfo CreatePepperFlashInfo(const base::FilePath& path,
                                                 const std::string& version) {
   content::PepperPluginInfo plugin;
 
@@ -71,9 +71,9 @@ content::PepperPluginInfo CreatePepperFlashInfo(const base::FilePath& path,
   plugin.mime_types.push_back(spl_mime_type);
 
   return plugin;
-}
+}*/
 
-#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
+/*#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
 content::PepperPluginInfo CreateWidevineCdmInfo(const base::FilePath& path,
                                                 const std::string& version) {
   content::PepperPluginInfo widevine_cdm;
@@ -85,7 +85,7 @@ content::PepperPluginInfo CreateWidevineCdmInfo(const base::FilePath& path,
                              version + ")";
   widevine_cdm.version = version;
   content::WebPluginMimeType widevine_cdm_mime_type(
-      kWidevineCdmPluginMimeType,
+      ks,
       kWidevineCdmPluginExtension,
       kWidevineCdmPluginMimeTypeDescription);
 
@@ -108,9 +108,9 @@ content::PepperPluginInfo CreateWidevineCdmInfo(const base::FilePath& path,
 
   return widevine_cdm;
 }
-#endif
+#endif*/
 
-void ComputeBuiltInPlugins(std::vector<content::PepperPluginInfo>* plugins) {
+/*void ComputeBuiltInPlugins(std::vector<content::PepperPluginInfo>* plugins) {
   content::PepperPluginInfo pdf_info;
   pdf_info.is_internal = true;
   pdf_info.is_out_of_process = true;
@@ -127,7 +127,7 @@ void ComputeBuiltInPlugins(std::vector<content::PepperPluginInfo>* plugins) {
       chrome_pdf::PPP_ShutdownModule;
   pdf_info.permissions = ppapi::PERMISSION_PRIVATE | ppapi::PERMISSION_DEV;
   plugins->push_back(pdf_info);
-}
+}*/
 
 void ConvertStringWithSeparatorToVector(std::vector<std::string>* vec,
                                         const char* separator,
@@ -142,7 +142,7 @@ void ConvertStringWithSeparatorToVector(std::vector<std::string>* vec,
 
 }  // namespace
 
-void AddPepperFlashFromCommandLine(
+/*void AddPepperFlashFromCommandLine(
     std::vector<content::PepperPluginInfo>* plugins) {
   auto command_line = base::CommandLine::ForCurrentProcess();
   base::FilePath flash_path = command_line->GetSwitchValuePath(
@@ -154,9 +154,9 @@ void AddPepperFlashFromCommandLine(
       switches::kPpapiFlashVersion);
 
   plugins->push_back(CreatePepperFlashInfo(flash_path, flash_version));
-}
+}*/
 
-#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
+/*#if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
 void AddWidevineCdmFromCommandLine(
     std::vector<content::PepperPluginInfo>* plugins) {
   auto command_line = base::CommandLine::ForCurrentProcess();
@@ -176,7 +176,7 @@ void AddWidevineCdmFromCommandLine(
   plugins->push_back(CreateWidevineCdmInfo(widevine_cdm_path,
                                            widevine_cdm_version));
 }
-#endif
+#endif*/
 
 AtomContentClient::AtomContentClient() {
 }
@@ -199,7 +199,7 @@ base::string16 AtomContentClient::GetLocalizedString(int message_id) const {
 }
 
 void AtomContentClient::AddAdditionalSchemes(Schemes* schemes) {
-  schemes->standard_schemes.push_back("chrome-extension");
+//  schemes->standard_schemes.push_back("chrome-extension");
 
   std::vector<std::string> splited;
   ConvertStringWithSeparatorToVector(&splited, ",",
@@ -213,13 +213,13 @@ void AtomContentClient::AddAdditionalSchemes(Schemes* schemes) {
     schemes->secure_schemes.push_back(scheme);
 }
 
-void AtomContentClient::AddPepperPlugins(
+/*void AtomContentClient::AddPepperPlugins(
     std::vector<content::PepperPluginInfo>* plugins) {
   AddPepperFlashFromCommandLine(plugins);
 #if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_PEPPER_CDMS)
   AddWidevineCdmFromCommandLine(plugins);
 #endif
   ComputeBuiltInPlugins(plugins);
-}
+}*/
 
 }  // namespace atom

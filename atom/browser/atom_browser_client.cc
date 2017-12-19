@@ -161,8 +161,8 @@ void AtomBrowserClient::RenderProcessWillLaunch(
   int process_id = host->GetID();
   host->AddFilter(new printing::PrintingMessageFilter(process_id));
   host->AddFilter(new TtsMessageFilter(process_id, host->GetBrowserContext()));
-  host->AddFilter(
-      new WidevineCdmMessageFilter(process_id, host->GetBrowserContext()));
+  //host->AddFilter(
+   //   new WidevineCdmMessageFilter(process_id, host->GetBrowserContext()));
 
   content::WebContents* web_contents = GetWebContentsFromProcessID(process_id);
   ProcessPreferences process_prefs;
@@ -288,8 +288,8 @@ void AtomBrowserClient::AppendExtraCommandLineSwitches(
 
 void AtomBrowserClient::DidCreatePpapiPlugin(
     content::BrowserPpapiHost* host) {
-  host->GetPpapiHost()->AddHostFactoryFilter(
-      base::WrapUnique(new chrome::ChromeBrowserPepperHostFactory(host)));
+//  host->GetPpapiHost()->AddHostFactoryFilter(
+//      base::WrapUnique(new chrome::ChromeBrowserPepperHostFactory(host)));
 }
 
 content::QuotaPermissionContext*
